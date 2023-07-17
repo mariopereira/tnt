@@ -1,7 +1,7 @@
 {
-    "name": "200mph/tnt-express-connect",
+    "name": "mariopereira/tnt-express-connect",
     "type": "library",
-    "description": "TNT ExpressConnect (API) client",
+    "description": "Fork of TNT ExpressConnect (API) client",
     "keywords": ["tnt", "tnt express connect", "tnt tracking", "tnt shipping"],
     "license": "MIT",
     "homepage": "https://github.com/200MPH/tnt-ec",
