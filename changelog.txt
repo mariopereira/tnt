@@ -1,3 +1,5 @@
+----- 3.2 -----
+    - Just bumped version of API to 3.2. With this version, TNT sends the ETA of the package.
 ----- 3.1.0 under development -----
     - add price quotation functionality
 ----- 3.0.0 -----
