@@ -1,5 +1,15 @@
 ## TNT ExpressConnect
 
+Fork of [200MPH/tnt](https://github.com/200MPH/tnt)
+
+Changes:
+
+- Fixed issue [#36](https://github.com/200MPH/tnt/issues/36) of forked project
+- Bumped TNT Api version from 3.0 to 3.2. This allows us to get the estimated time of arrival
+
+---
+(original README.md from forked project)
+
 Welcome to my project!
 
 PHP client which helps developers integrate TNT EC with their application.
