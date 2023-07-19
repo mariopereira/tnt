@@ -276,5 +276,5 @@ Problem may occur on development environment.
 ## 10. TNT Documentation
 
 For more details please read TNT documentation.
-[https://github.com/200MPH/tnt/blob/develop/docs/Shipping/ExpressConnect%20Shipping%20Integration%20Guide%20v3.8.pdf](https://github.com/200MPH/tnt/blob/develop/docs/Shipping/ExpressConnect%20Shipping%20Integration%20Guide%20v3.8.pdf)
- 
+
+[https://github.com/mariopereira/tnt/blob/master/docs/Shipping/ExpressConnect%20Shipping%20Integration%20Guide%20v3.15.pdf](https://github.com/mariopereira/tnt/blob/master/docs/Shipping/ExpressConnect%20Shipping%20Integration%20Guide%20v3.15.pdf)
