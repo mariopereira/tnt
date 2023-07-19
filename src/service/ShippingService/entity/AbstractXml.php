@@ -24,7 +24,6 @@ abstract class AbstractXml
      */
     public function __construct()
     {
-        
         $this->xml = new MyXMLWriter();
         $this->xml->openMemory();
         $this->xml->setIndent(true);
@@ -35,10 +34,13 @@ abstract class AbstractXml
      */
     public function __destruct()
     {
+        set_error_handler(function() {});
     
         if($this->xml instanceof MyXMLWriter) {
             $this->xml->flush();
         }
+
+        restore_error_handler();
     }
     
     /**
