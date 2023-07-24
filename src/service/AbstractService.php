@@ -247,8 +247,8 @@ abstract class AbstractService
      */
     private function buildHttpPostData()
     {
-        
-        $post = http_build_query(array('xml_in' => $this->getXmlContent()));
+        $xmlContent = $this->getXmlContent();
+        $post = http_build_query(array('xml_in' => $xmlContent));
         return $post;
     }
 }
