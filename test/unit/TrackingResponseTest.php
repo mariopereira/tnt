@@ -8,11 +8,12 @@
 
 namespace thm\tnt_ec\test\unit;
 
+use PHPUnit\Framework\TestCase;
 use thm\tnt_ec\Service\TrackingService\TrackingResponse;
 use thm\tnt_ec\service\TrackingService\entity\Consignment;
 use thm\tnt_ec\service\TrackingService\entity\StatusData;
 
-class TrackingResponseTest extends \PHPUnit_Framework_TestCase
+class TrackingResponseTest extends TestCase
 {
     
     /**
@@ -26,7 +27,7 @@ class TrackingResponseTest extends \PHPUnit_Framework_TestCase
      */
     private $xml;
     
-    public function setUp()
+    public function setUp(): void
     {
         
         parent::setUp();

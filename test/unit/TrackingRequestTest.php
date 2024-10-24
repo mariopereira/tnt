@@ -8,15 +8,16 @@
 
 namespace thm\tnt_ec\test\unit;
 
+use PHPUnit\Framework\TestCase;
 use thm\tnt_ec\service\TrackingService\TrackingService;
 use thm\tnt_ec\Service\TrackingService\TrackingResponse;
 
-class TrackingRequestTest extends \PHPUnit_Framework_TestCase
+class TrackingRequestTest extends TestCase
 {
     
     private $ts;
         
-    public function setUp()
+    public function setUp(): void
     {
         
         parent::setUp();
