@@ -13,7 +13,7 @@ use thm\tnt_ec\TNTException;
 class PricingService extends AbstractService
 {
 
-    const VERSION = '3.0';
+    const VERSION = '3.2';
 
     /**
      * @var string
