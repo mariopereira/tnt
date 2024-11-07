@@ -44,6 +44,12 @@ class PricingService extends AbstractService
     private array $pieceLines = [];
     private string $serviceId;
 
+    private string $serviceUrl = 'https://express.tnt.com/expressconnect/pricing/getprice';
+    /**
+     * @var string[]
+     */
+    private array $productOptions = [];
+
     /**
      * Initialise service
      *
@@ -60,10 +66,15 @@ class PricingService extends AbstractService
         $this->appid = $appid;
     }
 
-    public function getServiceUrl()
+    public function getServiceUrl(): string
     {
-        return 'https://express.tnt.com/expressconnect/pricing/getprice';
-        //return 'https://iconnection.tnt.com/PriceGate.asp';
+        return $this->serviceUrl;
+    }
+
+    public function setServiceUrl($serviceUrl): self
+    {
+        $this->serviceUrl = $serviceUrl;
+        return $this;
     }
 
     public function getAppid(): string
@@ -198,11 +209,36 @@ class PricingService extends AbstractService
         return $this;
     }
 
+    public function getProductOptions(): array
+    {
+        return $this->productOptions;
+    }
+
+    /**
+     * @param string[] $productOptions
+     * @return $this
+     */
+    public function setProductOptions(array $productOptions): self
+    {
+        $this->productOptions = $productOptions;
+        return $this;
+    }
+
+    /**
+     * Get XML content
+     *
+     * @return string
+     */
+    public function getXmlContent()
+    {
+        $this->initXml();
+        $this->startDocument();
+        $this->endDocument();
+        return parent::getXmlContent();
+    }
 
     public function getPrice(): PricingResponse
     {
-        $this->startDocument();
-        $this->endDocument();
         return new PricingResponse($this->sendRequest(), $this->getXmlContent());
     }
 
@@ -224,18 +260,26 @@ class PricingService extends AbstractService
         $this->xml->writeElement('rateId', $this->rateId ?? time());
         $this->xml->startElement('sender');
         $this->xml->writeElement('country', $this->sender->getCountry());
-        $this->xml->writeElement('town', $this->sender->getTown());
-        $this->xml->writeElement('postcode', $this->sender->getPostcode());
+        $this->xml->writeElementCData('town', $this->sender->getTown());
+        $this->xml->writeElementCData('postcode', $this->sender->getPostcode());
         $this->xml->endElement();
         $this->xml->startElement('delivery');
         $this->xml->writeElement('country', $this->delivery->getCountry());
-        $this->xml->writeElement('town', $this->delivery->getTown());
-        $this->xml->writeElement('postcode', $this->delivery->getPostcode());
+        $this->xml->writeElementCData('town', $this->delivery->getTown());
+        $this->xml->writeElementCData('postcode', $this->delivery->getPostcode());
         $this->xml->endElement();
         $this->xml->writeElement('collectionDateTime', $this->collectionDateTime->format('c'));
         $this->xml->startElement('product');
         $this->xml->writeElement('id', $this->serviceId);
         $this->xml->writeElement('type', $this->product);
+        $this->xml->startElement('options');
+        foreach ($this->productOptions as $optionCode) {
+            $this->xml->startElement('option');
+            $this->xml->writeElement('optionCode', $optionCode);
+            $this->xml->endElement();
+            $this->xml->writeElement('option', $optionCode);
+        }
+        $this->xml->endElement();
         $this->xml->endElement();
         $this->xml->startElement('account');
         $this->xml->writeElement('accountNumber', $this->account);
@@ -289,8 +333,9 @@ class PricingService extends AbstractService
                 'content' => $this->getXmlContent()
             ),
             'ssl' => array(
-                'verify_peer' => true,
-                'verify_peer_name' => true)
+                'verify_peer' => $this->getVerifySsl(),
+                'verify_peer_name' => $this->getVerifySsl()
+            )
         ));
 
         $output = @file_get_contents($this->getServiceUrl(), false, $context);
