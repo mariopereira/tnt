@@ -34,13 +34,13 @@ abstract class AbstractXml
      */
     public function __destruct()
     {
-        set_error_handler(function() {});
-    
-        if($this->xml instanceof MyXMLWriter) {
-            $this->xml->flush();
+        try {
+            if($this->xml instanceof MyXMLWriter) {
+                $this->xml->flush();
+            }
+        } catch (\Throwable $e) {
+            // Do nothing
         }
-
-        restore_error_handler();
     }
     
     /**
