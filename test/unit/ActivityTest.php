@@ -8,10 +8,11 @@
 
 namespace thm\tnt_ec\test\unit;
 
+use PHPUnit\Framework\TestCase;
 use thm\tnt_ec\service\ShippingService\Activity;
 use thm\tnt_ec\service\ShippingService\ActivityResponse;
 
-class ActivityTest extends \PHPUnit_Framework_TestCase
+class ActivityTest extends TestCase
 {
     
     /**
