@@ -6,6 +6,10 @@ Changes:
 
 - Fixed issue [#36](https://github.com/200MPH/tnt/issues/36) of forked project
 - Bumped TNT Api version from 3.0 to 3.2. This allows us to get the estimated time of arrival
+- Changed communication method in AbstractService from file_get_contents to curl
+
+### NOTES:
+- This fork has some code that is specific to the project I'm using it in, so should not be used as a general fork
 
 ---
 (original README.md from forked project)
