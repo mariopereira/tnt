@@ -8,9 +8,10 @@
 
 namespace thm\tnt_ec\test\unit;
 
+use PHPUnit\Framework\TestCase;
 use thm\tnt_ec\XMLTools;
 
-class XMLToolsTest extends \PHPUnit_Framework_TestCase
+class XMLToolsTest extends TestCase
 {
     
     /**

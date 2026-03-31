@@ -158,6 +158,14 @@ abstract class AbstractService
         $this->verifySSL = false;
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    protected function getVerifySsl()
+    {
+        return $this->verifySSL;
+    }
     
     /**
      * Build/start document
