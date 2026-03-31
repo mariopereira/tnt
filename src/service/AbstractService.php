@@ -269,9 +269,8 @@ abstract class AbstractService
             CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
             CURLOPT_USERPWD => "$this->userId:$this->password",
 
-            // There are some problems with TNT certificates...
-            CURLOPT_SSL_VERIFYPEER => 0, // $this->verifySSL,
-            CURLOPT_SSL_VERIFYHOST => 0, // $this->verifySSL ? 2 : 0,
+            CURLOPT_SSL_VERIFYPEER => $this->verifySSL,
+            CURLOPT_SSL_VERIFYHOST => $this->verifySSL ? 2 : 0,
 
             CURLOPT_HEADERFUNCTION => function($curl, $header) use (&$headers) {
                 //log_message('error', 'Header: ' . print_r($header, true));
