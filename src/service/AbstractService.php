@@ -246,10 +246,10 @@ abstract class AbstractService
         $dump = '';
 
         $url = $this->getServiceUrl();
-        //$postData = $this->getXmlContent(); // $this->buildHttpPostData();
-        $postData = [
+        $postData = $this->buildHttpPostData();
+        /*$postData = [
             'xml_in' => $this->getXmlContent()
-        ];
+        ];*/
 
         //log_message('error', 'TNT URL: ' . $url);
         //log_message('error', 'TNT Post fields: ' . $postData);
