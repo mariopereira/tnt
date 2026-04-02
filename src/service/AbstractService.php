@@ -213,7 +213,6 @@ abstract class AbstractService
      */
     protected function sendRequest()
     {
-        /*
         $headers[] = "Content-type: application/x-www-form-urlencoded";
         $headers[] = "Authorization: Basic " . base64_encode("$this->userId:$this->password");
 
@@ -238,8 +237,8 @@ abstract class AbstractService
         }
 
         return $output;
-         */
 
+        // new methor beloow, not used now for tests
         $headers = [];
         $output = null;
         $stderr = null;
@@ -338,7 +337,6 @@ abstract class AbstractService
         curl_close($ch);
 
         return $error ? false : $output;
-
     }
  
     /**
