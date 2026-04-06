@@ -213,6 +213,7 @@ abstract class AbstractService
      */
     protected function sendRequest()
     {
+        /*
         $headers[] = "Content-type: application/x-www-form-urlencoded";
         $headers[] = "Authorization: Basic " . base64_encode("$this->userId:$this->password");
 
@@ -237,6 +238,7 @@ abstract class AbstractService
         }
 
         return $output;
+        */
 
         // new methor beloow, not used now for tests
         $headers = [];
@@ -246,18 +248,11 @@ abstract class AbstractService
 
         $url = $this->getServiceUrl();
         $postData = $this->buildHttpPostData();
-        /*$postData = [
-            'xml_in' => $this->getXmlContent()
-        ];*/
-
-        //log_message('error', 'TNT URL: ' . $url);
-        //log_message('error', 'TNT Post fields: ' . $postData);
-        //log_message('error', 'TNT x: ' . $this->userId . '|||' . $this->password);
 
         $curl_opts = [
             CURLOPT_URL => $url,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $postData,
+            CURLOPT_POSTFIELDS => (string) $postData,
             CURLOPT_RETURNTRANSFER => true,
 
             CURLOPT_HTTPHEADER => [
@@ -272,21 +267,8 @@ abstract class AbstractService
             CURLOPT_SSL_VERIFYHOST => $this->verifySSL ? 2 : 0,
 
             CURLOPT_HEADERFUNCTION => function($curl, $header) use (&$headers) {
-                //log_message('error', 'Header: ' . print_r($header, true));
                 $len = strlen($header);
                 $headers[] = trim($header);
-
-                /*
-                $header = explode(':', $header, 2);
-
-                if (count($header) < 2) {
-                    return $len;
-                }
-
-                $name = strtolower(trim($header[0]));
-                $headers[$name] = $header[1];
-                */
-
                 return $len;
             }
         ];
@@ -307,12 +289,6 @@ abstract class AbstractService
         if (!empty($headers)) {
             HTTPHeaders::$headers = $headers;
         }
-
-        /*
-        if ($output === false) {
-            throw new Exception(curl_error($ch), curl_errno($ch));
-        }
-        */
 
         $dump = null;
 
