@@ -8,9 +8,10 @@
 
 namespace thm\tnt_ec\test\unit;
 
+use PHPUnit\Framework\TestCase;
 use thm\tnt_ec\service\ShippingService\ShippingService;
 
-class ShippingRequestTest extends \PHPUnit_Framework_TestCase
+class ShippingRequestTest extends TestCase
 {
 
     public function testXmlOutputSender()
